@@ -72,4 +72,4 @@ app.use("/paymentdone",PaymentdoneRouter);
 // app.listen(3001);
 // console.log("server invoked at link http://localhost:3001");
 
-module.exports=app;
+export default app;
