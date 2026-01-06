@@ -26,6 +26,26 @@ dotenv.config();
 
 app.use(cors())
 
+let isConnected=false;
+
+async function connectToMongoDB(){
+    try{{
+        await import('./models/connection.js');
+        isConnected=true;
+        console.log("MongoDB connection established.");
+    }
+    }catch(error){
+        console.error("Error connecting to MongoDB:", error);
+    }
+}
+
+app.use(async (req,res,next)=>{
+    if(!isConnected){
+        await connectToMongoDB();
+    }
+    next();
+});
+
 // ✅ FILE UPLOAD MIDDLEWARE
 app.use(fileUpload());
 
@@ -49,5 +69,7 @@ app.use("/paymentdone",PaymentdoneRouter);
 
 
 
-app.listen(3001);
-console.log("server invoked at link http://localhost:3001");
+// app.listen(3001);
+// console.log("server invoked at link http://localhost:3001");
+
+module.exports=app;
