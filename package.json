@@ -6,6 +6,8 @@
   "author": "Rohit Parmar",
   "main": "esDemo.js",
   "type": "module",
+  "start": "express app",
+  "vercel-start" : "express app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node"
   },

@@ -2,6 +2,6 @@
 //for connection 'mongoose' client is used
 
 import mongoose from 'mongoose';
-const url="mongodb://127.0.0.1:27017/moveShift";
+const url="mongodb+srv://rohitparmar0215_db_user:R41tIU7VqaCqeTkW@cluster0.vholmjq.mongodb.net/moveShift";
 mongoose.connect(url);
 console.log("Successfully connected to mongodb database...");
