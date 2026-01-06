@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import fileUpload from "express-fileupload";
+// import fileUpload from "express-fileupload";
 
 
 const app = express();   
@@ -28,16 +28,16 @@ app.use(cors())
 
 let isConnected=false;
 
-async function connectToMongoDB(){
-    try{{
-        await import('./models/connection.js');
-        isConnected=true;
-        console.log("MongoDB connection established.");
-    }
-    }catch(error){
-        console.error("Error connecting to MongoDB:", error);
-    }
+async function connectToMongoDB() {
+  try {
+    await import("./models/connection.js");
+    isConnected = true;
+    console.log("MongoDB connection established.");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+  }
 }
+
 
 app.use(async (req,res,next)=>{
     if(!isConnected){
@@ -46,8 +46,8 @@ app.use(async (req,res,next)=>{
     next();
 });
 
-// ✅ FILE UPLOAD MIDDLEWARE
-app.use(fileUpload());
+// // ✅ FILE UPLOAD MIDDLEWARE
+// app.use(fileUpload());
 
 //configuration to fetch req body content : body parser middleware
 //used to fetch req data from methods like : POST , PUT , PATCH , DELETE
